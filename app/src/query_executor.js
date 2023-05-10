@@ -6,4 +6,4 @@ function executeQuery(letters) {
     return [];
 }
 
-export default executeQuery;a
+export default executeQuery;
