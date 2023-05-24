@@ -1,7 +1,10 @@
-function executeGetRequest() {
-    fetch('https://will4422.github.io/word_unscrambler/words_alpha.json')
-        .then(resp => resp.json())
-        .then(json => console.log(JSON.stringify(json)))
+async function executeGetRequest() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            return json;
+        });
 }
 
 export default executeGetRequest;

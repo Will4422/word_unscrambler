@@ -2,17 +2,26 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import './scss/custom.scss';
 import 'bootstrap';
-import executeGetRequest from './executeGetRequest';
+import ResultsContainer from './results_container';
 
 class unscrambleForm extends React.Component {
     constructor(props) {
         super(props);
         this.unscramble = this.unscramble.bind(this);
+        this.state = {
+            displayResults: false,
+            results: {},
+        }
     }
     
-    async unscramble() {
-        console.log("WE MADE IT");
-        const res = await executeGetRequest();
+    async unscramble(event) {
+        event.preventDefault();
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+        const data = await res.json();
+        this.setState({
+            displayResults: true,
+            results: data,
+        });
     }
     
 
@@ -25,10 +34,11 @@ class unscrambleForm extends React.Component {
                         <div className="well">
                             <form onSubmit={this.unscramble}>
                             <input></input>
-                            <button type="submit">Unscramble!</button>
+                            <button type='submit'>Unscramble!</button>
                             </form>
                         </div>
                     </Row>
+                    {this.state.displayResults && <ResultsContainer results={this.state.results} />}
                 </div>
             </div>
         );
