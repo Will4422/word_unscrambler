@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/word_unscrambler/static/css/main.84ef6543.css",
+    "main.js": "/word_unscrambler/static/js/main.885e4dee.js",
+    "index.html": "/word_unscrambler/index.html",
+    "main.84ef6543.css.map": "/word_unscrambler/static/css/main.84ef6543.css.map",
+    "main.885e4dee.js.map": "/word_unscrambler/static/js/main.885e4dee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84ef6543.css",
+    "static/js/main.885e4dee.js"
+  ]
+}
