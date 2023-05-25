@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/word_unscrambler/static/css/main.84ef6543.css",
-    "main.js": "/word_unscrambler/static/js/main.9352e7f5.js",
+    "main.css": "/word_unscrambler/static/css/main.2b0fc185.css",
+    "main.js": "/word_unscrambler/static/js/main.88b23013.js",
     "index.html": "/word_unscrambler/index.html",
-    "main.84ef6543.css.map": "/word_unscrambler/static/css/main.84ef6543.css.map",
-    "main.9352e7f5.js.map": "/word_unscrambler/static/js/main.9352e7f5.js.map"
+    "main.2b0fc185.css.map": "/word_unscrambler/static/css/main.2b0fc185.css.map",
+    "main.88b23013.js.map": "/word_unscrambler/static/js/main.88b23013.js.map"
   },
   "entrypoints": [
-    "static/css/main.84ef6543.css",
-    "static/js/main.9352e7f5.js"
+    "static/css/main.2b0fc185.css",
+    "static/js/main.88b23013.js"
   ]
 }
