@@ -24,7 +24,7 @@ class unscrambleForm extends React.Component {
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
-        const scrambledString = formJson["inputString"];
+        const scrambledString = formJson["inputString"].trim().toLowerCase(); // TODO: get rid of spaces, turn to lower case
         if (scrambledString === "") {
             alert("Please enter at least one letter");
             this.setState({
@@ -44,6 +44,7 @@ class unscrambleForm extends React.Component {
             let shouldInclude = true;
             let wordUnderInvestigation = Object.keys(word)[0];
             let wordUnderInvestigationList = wordUnderInvestigation.split('');
+            debugger;
             let sorted1 = scrambledStringList.sort();
             let sorted2 = wordUnderInvestigationList.sort();
             for (let i = 0; i < length; i++) {
