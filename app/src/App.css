@@ -2,9 +2,29 @@
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
-  border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  border-radius: 46px;
+  background: linear-gradient(145deg, #efeeee, #f0f0f0);
+  box-shadow:  7px 7px 14px #b8b8b8,
+             -7px -7px 14px #ffffff;
 }
+
+#title {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  /* font-size that changes as the view shrinks and grows */
+  font-size: calc(2em + 2vw);
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+#unscramble-button{
+  border-radius: 46px;
+  background: #e0e0e0;
+  box-shadow:  7px 7px 19px #b8b8b8,
+              -7px -7px 19px #ffffff;
+}
+

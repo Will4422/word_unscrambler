@@ -1,8 +1,6 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 import './scss/custom.scss';
 import 'bootstrap';
-import ResultsContainer from './results_container';
 
 class unscrambleForm extends React.Component {
     constructor(props) {
@@ -11,16 +9,15 @@ class unscrambleForm extends React.Component {
         this.state = {
             displayResults: false,
             results: {},
-            scrambledString: "",
-            scrambledStringLength: 0,
-            possibleSolutions: []
+            possibleSolutions: [],
+            emptyResults: false
         }
     }
     
     async unscramble(event) {
         event.preventDefault();
         // fetch the json file data
-        const res = await fetch('https://will4422.github.io/word_unscrambler/words_alpha.json');
+        const res = await fetch('https://will4422.github.io/json_storage/words_alpha.json');
         const data = await res.json();
 
         // Read the form data
@@ -28,6 +25,13 @@ class unscrambleForm extends React.Component {
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
         const scrambledString = formJson["inputString"];
+        if (scrambledString === "") {
+            alert("Please enter at least one letter");
+            this.setState({
+                displayResults: false
+            })
+            return;
+        }
 
         // find appropriate potentially matching strings
         const scrambledStringList = scrambledString.split('');
@@ -51,16 +55,21 @@ class unscrambleForm extends React.Component {
                 possibleSolutions.push(wordUnderInvestigation);
             }
         });
-        debugger;
 
-
-        this.setState({
-            displayResults: true,
-            results: data,
-            scrambledString: scrambledString,
-            scrambledStringLength: length,
-            possibleSolutions: possibleSolutions
-        });
+        if (possibleSolutions.length === 0) {
+            this.setState({
+                emptyResults: true,
+                displayResults: true,
+                possibleSolutions: []
+            })
+        } else {
+            this.setState({
+                emptyResults: false,
+                displayResults: true,
+                results: data,
+                possibleSolutions: possibleSolutions
+            });
+        }
     }
     
 
@@ -68,18 +77,37 @@ class unscrambleForm extends React.Component {
         return(
             <div>
                 <div className="container-fluid">
-                    <h3 className="text-primary text-center">Word Unscrambler</h3>
-                    <Row>
-                        <div className="well">
+                    <div className='row'>
+                        <h3 className="text-primary text-center" id='title'>Word Unscrambler</h3>
+                    </div>
+                    <div className="row">
+                    <div className="col-sm-2"></div> {/* Left column */}
+                    <div className="col-sm-8"> {/* Middle column */}
+                        <div className="well container">
                             <form onSubmit={this.unscramble}>
-                                <label>
-                                    Your letters: <input name="inputString" autoFocus={true}/>   
-                                </label>
-                            <button type='submit'>Unscramble!</button>
+                                <div className="row">
+                                    <div className="col-lg-6 col-sm-12 d-flex justify-content-center">
+                                        <label>
+                                        Your letters: <input name="inputString" autoFocus={true} />
+                                        </label>
+                                    </div>
+                                    <div className="col-lg-6 col-sm-12 d-flex justify-content-center">
+                                        <button type="submit" id='unscramble-button'>Unscramble!</button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
-                    </Row>
-                    {this.state.displayResults && this.state.possibleSolutions.map(solution => (<p>{solution}</p>))}
+                    </div>
+                    <div className="col-sm-2"></div> {/* Right column */}
+                    </div>
+                        <div className='row'>
+                        <div className="col-sm-2"></div> {/* Left column */}
+                        <div className="col-sm-8"> {/* Middle column */}
+                            {(this.state.displayResults && this.state.emptyResults) && <p style={{color: "red"}}>No words can be formed from these letters!</p>}
+                            {this.state.displayResults && this.state.possibleSolutions.map(solution => (<p>{solution}</p>))}
+                        </div>
+                        <div className="col-sm-2"></div> {/* Left column */}    
+                    </div>
                 </div>
             </div>
         );
